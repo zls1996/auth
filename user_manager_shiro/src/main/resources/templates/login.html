@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" th:href="@{../static/css/login.css}">
+    <script th:src="@{../static/js/jquery.min.js}"></script>
+
+
+</head>
+<body>
+<main>
+    <h3>login to System</h3>
+    <div id="Elm">
+        <input id="user" type="text" value="" name="user" placeholder="请输入你的用户名">
+        <th><span></span></th>
+    </div>
+    <div id="Elm">
+        <input id="pas" type="password" value="" placeholder="请输入你的密码">
+        <th><span></span></th>
+    </div>
+
+    <div id="Elm">
+        <input type="radio" name="管理员类型" value="2" >系统管理员<br>
+        <input type="radio" name="管理员类型" value="3" >应用管理员<br>
+    </div>
+    <div id="Elm">
+        <button id="btn" style="cursor:pointer">提交</button>
+    </div>
+</main>
+
+</body>
+<script th:src="@{../static/js/login.js}" ></script>
+</html>

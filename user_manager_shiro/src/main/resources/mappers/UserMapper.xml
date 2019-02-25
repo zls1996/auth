@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whxl.user_manage.dao.UserDao">
+    <sql id="columnsWithId">
+        id, username,nickname, password, sex, role_type,create_by
+    </sql>
+
+    <sql id="columnsWithoutId">
+         username,nickname, password, sex, role_type,create_by
+    </sql>
+
+    <!--
+    <resultMap id="detailUser" type="com.whxl.user_manage.entity.User">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="password" column="password"></result>
+        <result property="nickname" column="nickname"></result>
+        <result property="sex" column="sex"></result>
+        <result property="roleType" column="role_type"></result>
+
+        <result ></result>
+    </resultMap>
+    -->
+
+    <select id="getUserByUsername" resultType="com.whxl.user_manage.entity.User" parameterType="java.lang.String">
+        SELECT <include refid="columnsWithId"></include>
+        FROM user
+        WHERE username = #{username}
+    </select>
+
+    <insert id="insertUser" parameterType="com.whxl.user_manage.entity.User">
+      INSERT INTO user (<include refid="columnsWithoutId"></include>)
+      VALUES (#{username}, #{nickname},#{password}, #{sex}, #{roleType}, #{createBy})
+    </insert>
+
+    <select id="getUserById" resultType="com.whxl.user_manage.entity.User" parameterType="java.lang.Integer">
+        SELECT <include refid="columnsWithId"></include>
+        FROM user
+        where id = #{id}
+    </select>
+
+
+
+    <delete id="deleteUserById" parameterType="java.lang.Integer">
+        DELETE FROM
+        user
+        WHERE id = #{id};
+    </delete>
+
+    <select id="getAllUser" resultType="com.whxl.user_manage.entity.User">
+        SELECT <include refid="columnsWithId"></include>
+        FROM user
+        WHERE 1 = 1
+    </select>
+
+    <!-- 动态SQL语句拼接 -->
+    <update id="updateUser" parameterType="com.whxl.user_manage.entity.User">
+        UPDATE user
+        <set>
+            <if test="username != null">username=#{username},</if>
+            <if test="nickname != null">nickname=#{nickname},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="sex != null">sex=#{sex},</if>
+            <if test="roleType != null"> role_type=#{roleType},</if>
+            <if test="createBy != null">create_by=#{createBy}</if>
+        </set>
+
+        WHERE id = ${user.id}
+
+
+    </update>
+
+    <!-- 根据用户权限来获得对应的用户-->
+    <select id="getUserByRole" resultType="com.whxl.user_manage.entity.User">
+        SELECT <include refid="columnsWithId"></include>
+        FROM user
+        WHERE  role_type &gt; #{roleType}
+    </select>
+
+
+</mapper>
+

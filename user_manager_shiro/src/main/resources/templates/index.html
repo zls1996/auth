@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{../static/js/jquery.min.js}"></script>
+</head>
+<body>
+    <h1>Hello world</h1>
+
+    <button id = "logout" style="width: 100px; height: 50px;">注销</button>
+
+    <button id = "add" style="width: 100px; height: 50px;">新建管理员</button>
+    <button id = "select" style="width: 100px; height: 50px;">查询管理员</button>
+    <button id = "update" style="width: 100px; height: 50px;">修改管理员</button>
+    <button id = "delete" style="width: 100px; height: 50px;">删除管理员</button>
+
+
+</body>
+    <script>
+        document.getElementById("logout").onclick = function () {
+            //window.location.href = "/logout";
+            $.ajax({
+                "url":"/leave",
+                "type":"DELETE",
+                "dataType":"text",
+                "success":function(result){
+                    alert(result);
+                   window.location.href = "/login";
+                },
+                "error":function (result) {
+                    console.log(result);
+                }
+            });
+        }
+
+        /**
+         * 新建
+         */
+        document.getElementById("add").onclick = function () {
+            //window.location.href = "/logout";
+            $.ajax({
+                "url":"/manager",
+                "type":"PUT",
+                "dataType":"json",
+                "data":{
+                  "username":"py",
+                    "passwd":"123456",
+                    "nickname":"彭尹",
+                    "createtype":"sys"
+                },
+                "success":function(result){
+                    console.log(result);
+                },
+                "error":function (result) {
+                    console.log(result);
+                }
+            });
+        }
+
+        /**
+         * 修改
+         */
+        document.getElementById("update").onclick = function () {
+            //window.location.href = "/logout";
+            $.ajax({
+                "url":"/manager",
+                "type":"POST",
+                "dataType":"json",
+                "data":{
+                    "username":"py",
+                    "passwd":"123456",
+                    "nickname":"彭尹",
+                    "updatetype":"sys"
+                },
+                "success":function(result){
+                    console.log(result);
+                },
+                "error":function (result) {
+                    console.log(result);
+                }
+            });
+        }
+
+
+        /**
+         * 查询
+         */
+        document.getElementById("select").onclick = function () {
+            //window.location.href = "/logout";
+            $.ajax({
+                "url":"/manager",
+                "type":"GET",
+                "dataType":"JSON",
+                "success":function(result){
+                    console.log(result)
+                },
+                "error":function (result) {
+                    console.log(result);
+                }
+            });
+        }
+
+        /**
+         * 删除
+         */
+        document.getElementById("delete").onclick = function () {
+            //window.location.href = "/logout";
+            $.ajax({
+                "url":"/manager",
+                "type":"DELETE",
+                "data":{
+                  "username":"py"
+                },
+                "dataType":"json",
+                "success":function(result){
+                    console.log(result)
+                },
+                "error":function (result) {
+                    console.log(result);
+                }
+            });
+        }
+
+    </script>
+</html>

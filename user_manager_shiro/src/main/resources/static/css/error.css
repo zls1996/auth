@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+*{
+    font-size: 14px;
+    font-family: sans-serif;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+html,body{
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+main{
+    width: 400px;
+    height: 350px;
+    background: #fff;
+    margin: 150px auto;
+    padding: 20px 20px;
+    box-sizing: border-box;
+}
+main>h1{
+    font-size: 30px;
+    text-align: center;
+    line-height: 100px;
+}
+main>div{
+    font-size: 20px;
+    text-align: center;
+    line-height: 100px;
+}
+main>div>span{
+    color: blue;
+    font-size: 30px;
+}

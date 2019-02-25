@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whxl.user_manage.dao.PriviledgeDao">
+    <sql id="columnsWithId">
+        id, privi_name, inter_path, role_type
+
+    </sql>
+
+    <!--
+    <sql id="columnsWithId">
+       privi_name, inter_path, role_type
+
+    </sql>
+    -->
+
+    <!--根据角色id来获取权限 -->
+   <select id="getPriviledgesByRoleType" resultType="java.lang.String">
+      SELECT privi_name
+      FROM priviledge
+      WHERE role_type = #{roleType}
+   </select>
+
+</mapper>
+
